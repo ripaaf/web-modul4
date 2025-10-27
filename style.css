@@ -1,0 +1,98 @@
+:root{
+  --bg: #fff;
+  --text: #111;
+  --accent: #e02b2b;
+  --accent-dark: #0b3d91;
+  --muted: #6b6b6b;
+  --card: #ffffff;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:var(--text); line-height:1.5}
+.container{max-width:980px;margin:0 auto;padding:1rem}
+
+/* Header */
+.site-header{border-bottom:3px solid rgba(224,43,43,0.12)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.6rem 0}
+.logo{font-weight:700;color:var(--accent-dark)}
+.nav-list{list-style:none;display:flex;gap:0.5rem}
+.nav-list a{color:var(--muted);text-decoration:none;padding:0.2rem 0.5rem;border-radius:6px;font-size:0.95rem}
+.nav-list a:hover{color:var(--accent-dark);transform:translateY(-2px);transition:transform 140ms}
+
+/* Hero */
+.hero{padding:1rem 0}
+.lead{color:var(--muted);margin-top:0.4rem}
+
+/* Layout: main content + sidebar */
+.layout{display:grid;grid-template-columns:1fr 320px;gap:1rem;margin-top:1rem;align-items:start}
+.article{background:linear-gradient(180deg, rgba(11,61,145,0.03), transparent);padding:1rem;border-radius:8px}
+
+/* Sidebar made sticky on wider screens */
+.sidebar{
+  background:var(--card);
+  padding:0.9rem;
+  border-radius:8px;
+  border:1px solid rgba(11,61,145,0.06);
+
+  /* sticky behavior */
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 1.2rem;              /* jarak dari atas viewport */
+  align-self: start;        /* pastikan berada di awal grid track */
+  max-height: calc(100vh - 2.4rem); /* tetap dalam viewport */
+  overflow: auto;           /* jika konten lebih tinggi, buat scroll di dalam sidebar */
+}
+
+/* Film list */
+.film-list{display:flex;flex-direction:column;gap:0.6rem;margin-top:0.5rem}
+.film{padding:0.5rem;border-radius:6px;background:rgba(11,61,145,0.03)}
+
+/* Gallery */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-top:0.6rem}
+.gallery figure{background:#f4f6fb;border-radius:6px;padding:0.4rem;text-align:center}
+.gallery figcaption{font-size:0.85rem;color:var(--muted);margin-top:0.4rem}
+
+/* Form (compact) */
+label{display:block;font-size:0.85rem;color:var(--muted);margin-top:0.5rem}
+input, textarea{width:100%;padding:0.5rem;border:1px solid #e8e8ea;border-radius:6px;margin-top:0.25rem;font-size:0.95rem}
+textarea{resize:vertical}
+.form-actions{display:flex;gap:0.5rem;margin-top:0.7rem;align-items:center}
+.btn{background:var(--accent);color:#fff;border:none;padding:0.45rem 0.7rem;border-radius:6px;cursor:pointer;font-weight:600}
+.btn:hover{filter:brightness(0.98);transform:translateY(-2px);transition:all 140ms}
+.btn-ghost{background:transparent;border:1px solid #ddd;color:var(--muted)}
+
+/* More links */
+.more-links{margin-top:1rem;padding:0.8rem;border-radius:8px;background:rgba(224,43,43,0.03)}
+.more-links ul{list-style:disc;margin-left:1.2rem;color:var(--muted)}
+
+/* Footer */
+.site-footer{margin-top:1.2rem;padding:1rem 0;text-align:center;color:var(--muted);font-size:0.85rem}
+
+/* Welcome banner */
+.welcome-banner{position:fixed;right:1rem;bottom:1rem;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;padding:0.6rem 0.9rem;border-radius:8px;display:flex;align-items:center;gap:0.6rem;box-shadow:0 10px 30px rgba(11,61,145,0.18);z-index:1200}
+.welcome-banner button{background:transparent;border:none;color:#fff;font-size:1.1rem;cursor:pointer}
+
+/* Back to top */
+.back-to-top{position:fixed;right:1rem;bottom:5.2rem;background:var(--accent-dark);color:#fff;border:none;padding:0.45rem 0.6rem;border-radius:6px;cursor:pointer;display:none;box-shadow:0 6px 18px rgba(11,61,145,0.18)}
+.back-to-top.show{display:block}
+
+/* Responsive: stack on small screens and disable sticky there */
+@media (max-width:920px){
+  .layout{grid-template-columns:1fr 300px}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:720px){
+  .layout{grid-template-columns:1fr;align-items:start}
+  .sidebar{order:2;
+
+    /* non-sticky on small screens for better UX */
+    position: static;
+    top: auto;
+    max-height: none;
+    overflow: visible;
+  }
+  .hero{padding-bottom:0.4rem}
+  .nav-list{display:none}
+  .gallery{grid-template-columns:1fr}
+  .back-to-top{right:0.8rem}
+}
